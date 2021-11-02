@@ -24,7 +24,7 @@ bool DoublyLinkedList::insertPos(Node** current, int index, string data)
 { 
     // checks index 
     if (index < 1 || index > size + 1) {
-        cout<<"gecersiz dege\n";
+        cout<<" invalid value\n";
         return 0;
     }
     else {        
@@ -51,7 +51,7 @@ void DoublyLinkedList::delete_at(struct Node** head, int index)
        else if(index == 1 && *head != nullptr) { 
         Node* nodeToDelete = *head;
         *head = (*head)->next;
-        free(nodeToDelete);
+        delete(nodeToDelete);
 
         if(head != nullptr)
           (*head)->prev = nullptr;
@@ -69,7 +69,7 @@ void DoublyLinkedList::delete_at(struct Node** head, int index)
           temp->next = temp->next->next;
           if(temp->next->next != nullptr)
             temp->next->next->prev = temp->next;  
-          free(nodeToDelete); 
+          delete(nodeToDelete); 
         } 
         else {
           cout<<"\n The node is already null\n";

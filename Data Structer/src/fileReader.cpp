@@ -22,12 +22,10 @@ using namespace std;
   }
 
 
-void File::FileRead(DoublyLinkedList x, Data y, Node** head )
+void File::FileRead(DoublyLinkedList x, Data y, Node** head, string fileName )
 {   
-  string value = "";
-  string del = "";  
-  string str=""; 
-  ifstream file("Veri.txt");
+  string value, del, str;
+  ifstream file(fileName);
 
   while (getline(file, str))
   {   
@@ -38,11 +36,8 @@ void File::FileRead(DoublyLinkedList x, Data y, Node** head )
       for(i=2; str[i]!='#'; ++i)
         value += str[i];
 
-
       for(int k = i + 1; str[k]!=')'; ++k) 
         y.name+=str[k];
-
-      //cout <<"-"<< y.name<<"-"<<endl;
 
       y.addIndex = stoi(value);
 
@@ -57,10 +52,9 @@ void File::FileRead(DoublyLinkedList x, Data y, Node** head )
     }
     else if(str[0]=='S') {
       for(int k=2; str[k]!=')'; ++k) 
-        del += str[k];
-      
+        del += str[k];      
       y.deleteIndex = stoi(del);
-      //cout<<"\n"<<y.deleteIndex<<" indexli "<<x.size<<" size\n";
+     
       if(y.deleteIndex >= x.get_size())
         x.delete_back(head);
       else
@@ -69,7 +63,6 @@ void File::FileRead(DoublyLinkedList x, Data y, Node** head )
       del="";
       y.deleteIndex=0;
 
-   }
-   
+    }
   }
 }

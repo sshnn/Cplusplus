@@ -5,7 +5,7 @@
 class File {
 public:
     File();
-    void FileRead(DoublyLinkedList x, Data y, Node** head);
+    void FileRead(DoublyLinkedList x, Data y, Node** head, std::string fileName);
     DoublyLinkedList getList()const;
     Data getData()const;
     Node *getNode()const;

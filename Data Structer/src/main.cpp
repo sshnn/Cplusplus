@@ -5,15 +5,11 @@
 #include "fileReader.hpp"
 
 
-using namespace std;
-
-File r;
-Node *head =r.getNode();
-
-
 int main()
 {
-  r.FileRead(r.getList() ,r.getData() ,&head);  
+  File r;
+  Node *head =r.getNode();
+  r.FileRead(r.getList() ,r.getData(), &head, "Veri.txt");  
   r.getList().printList(head);
   
  
