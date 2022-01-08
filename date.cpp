@@ -16,7 +16,7 @@ int month[2][12]{
     {0, 31, 29, 31, 30, 31, 30, 31, 30, 31, 30, 31},
 };
 
-Date::Date() : md{1}, mm{1}, my{1900} {} //default ctor
+Date::Date() : md{1}, mm{1}, my{1900} {} 
 
 Date::Date(int d, int m, int y) : md{d}, mm{m}, my{y}
 {
@@ -35,7 +35,7 @@ Date &Date::operator=(const Date &other)
     return *this;
 }
 
-int Date::get_month_day() const //9
+int Date::get_month_day() const 
 {
     return md;
 }
@@ -45,12 +45,12 @@ int Date::get_month() const
     return mm;
 }
 
-int Date::get_year() const //11
+int Date::get_year() const 
 {
     return my;
 }
 
-int Date::get_year_day() const //12
+int Date::get_year_day() const 
 {
     return daysToMonth[isleap(my) ? 1 : 0][mm - 1] + md;
 }
@@ -100,13 +100,13 @@ std::string Date::get_month_name() const
     return month[get_month()];
 }
 
-Date &Date::set_month_day(int day) //14
+Date &Date::set_month_day(int day) 
 {
     md = day;
     return *this;
 }
 
-Date &Date::set_month(int month) //15
+Date &Date::set_month(int month) 
 {
     mm = month;
     return *this;
@@ -134,7 +134,7 @@ Date &Date::setToday()
     return set(tptr->tm_mday, tptr->tm_mon + 1, tptr->tm_year + 1900);
 }
 
-Date Date::operator-(int day) const //18
+Date Date::operator-(int day) const 
 {
     int d = md;
     int m = mm;
@@ -190,7 +190,7 @@ Date &Date::operator+=(int day) //19
     return *this;
 }
 
-Date &Date::operator-=(int day) //20
+Date &Date::operator-=(int day) 
 {
     if (md > day)
     {
@@ -239,24 +239,24 @@ Date Date::operator--(int)
     return temp;
 }
 
-bool project::operator<=(const Date &dx, const Date &dy) //27
+bool project::operator<=(const Date &dx, const Date &dy) 
 {
     if (operator<(dx, dy) || operator==(dx, dy))
         return 1;
     return 0;
 }
 
-bool project::operator>(const Date &dx, const Date &dy) //27
+bool project::operator>(const Date &dx, const Date &dy) 
 {
     return !operator<=(dx, dy);
 }
 
-bool project::operator>=(const Date &dx, const Date &dy) //27
+bool project::operator>=(const Date &dx, const Date &dy) 
 {
     return !operator<(dx, dy);
 }
 
-bool project::operator!=(const Date &dx, const Date &dy) //27
+bool project::operator!=(const Date &dx, const Date &dy) 
 {
     return !operator==(dx, dy);
 }
@@ -284,18 +284,18 @@ Date project::operator+(int n, const Date &date)
     return operator+(date, n);
 }
 
-Date::Weekday &project::operator++(Date::Weekday &wd) //30
+Date::Weekday &project::operator++(Date::Weekday &wd) 
 {
     return wd = wd == Date::Weekday::Saturday ? Date::Weekday::Sunday : static_cast<Date::Weekday>(static_cast<int>(wd) + 1);
 }
 
-Date::Weekday project::operator++(Date::Weekday &wd, int) //30
+Date::Weekday project::operator++(Date::Weekday &wd, int) 
 {
     Date::Weekday temp{wd};
     operator++(wd);
     return temp;
 }
-Date::Weekday &project::operator--(Date::Weekday &wd) //30
+Date::Weekday &project::operator--(Date::Weekday &wd) 
 {
     return wd = wd == Date::Weekday::Sunday ? Date::Weekday::Saturday : static_cast<Date::Weekday>(static_cast<int>(wd) - 1);
 }
@@ -314,7 +314,7 @@ namespace project
         return os << date.get_month_day() << " " << date.get_month_name() << " " << date.my;
     }
 
-    std::istream &operator>>(std::istream &is, Date &date) //32
+    std::istream &operator>>(std::istream &is, Date &date) 
     {
         int d, m, y;
         is >> d >> m >> y;
@@ -322,7 +322,7 @@ namespace project
         return is;
     }
 
-    bool operator<(const Date &dx, const Date &dy) //27
+    bool operator<(const Date &dx, const Date &dy) 
     {
         if (dx.my < dy.my)
             return dx.my < dy.my;
@@ -333,7 +333,7 @@ namespace project
         return 0;
     }
 
-    bool operator==(const Date &dx, const project::Date &dy) //27
+    bool operator==(const Date &dx, const project::Date &dy) 
     {
         if (dx.my == dy.my && dx.mm == dy.mm && dx.md == dy.md)
             return 1;
